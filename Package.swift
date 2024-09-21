@@ -4,20 +4,24 @@ import PackageDescription
 let package = Package(
     name: "WebViewJavascriptBridge",
     platforms: [
-        .iOS(.v9),  // Adjust platform as needed
-        .macOS(.v10_10) // Adjust other platforms as needed
+        .iOS(.v9),
+        .macOS(.v10_10)
     ],
     products: [
         .library(
-            name: "WebViewJavascriptBridge",
-            targets: ["WebViewJavascriptBridge"]),
+            name: "WKWebViewJavascriptBridge",
+            targets: ["WKWebViewJavascriptBridge"]
+        ),
     ],
     targets: [
         .target(
-            name: "WebViewJavascriptBridge",
+            name: "WKWebViewJavascriptBridge",
             path: "WebViewJavascriptBridge",
-            publicHeadersPath: ""
+            publicHeadersPath: ".",
+            cSettings: [
+                .headerSearchPath("."),
+                .define("WKWEBVIEWJAVASCRIPTBRIDGE_MODULE", to: nil)
+            ]
         )
     ]
 )
-
